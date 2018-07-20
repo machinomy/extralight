@@ -4,19 +4,30 @@
   "private": true,
   "description": "Machinomy ExtraLight wrapper for light Ethereum clients.",
   "license": "Apache-2.0",
+  "bin": {
+    "extralight": "./index.js"
+  },
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "start": "yarn build && node index.js",
+    "debug": "yarn build && DEBUG=* node index.js",
     "lint": "tslint --format stylish --project . --exclude './node_modules/**/*.ts'",
     "test": "exit 0",
     "coverage": "exit 0"
   },
   "devDependencies": {
+    "@types/debug": "^0.0.30",
+    "@types/dotenv": "^4.0.3",
+    "@types/node": "^10.5.2",
+    "@types/node-fetch": "^2.1.1",
     "tslint": "^5.11.0",
     "tslint-config-standard": "^7.1.0",
     "typescript": "^2.8.4"
   },
   "dependencies": {
-    "@machinomy/logger": "^0.0.3",
-    "gethdev": "^0.0.6"
+    "@machinomy/logger": "^0.0.4",
+    "dotenv": "^6.0.0",
+    "node-fetch": "^2.1.2",
+    "web3-ipc": "^0.0.0"
   }
 }
