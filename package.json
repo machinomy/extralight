@@ -16,6 +16,7 @@
     "coverage": "exit 0"
   },
   "devDependencies": {
+    "@machinomy/types-web3": "^0.0.12",
     "@types/debug": "^0.0.30",
     "@types/dotenv": "^4.0.3",
     "@types/node": "^10.5.2",
@@ -25,9 +26,10 @@
     "typescript": "^2.8.4"
   },
   "dependencies": {
+    "@machinomy/hdwallet-provider": "^1.2.0",
     "@machinomy/logger": "^0.0.4",
     "dotenv": "^6.0.0",
     "node-fetch": "^2.1.2",
-    "web3-ipc": "^0.0.0"
+    "web3": "^0.20.6"
   }
 }

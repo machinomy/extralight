@@ -9,6 +9,12 @@
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true
-  }
+    "experimentalDecorators": true,
+    "types": [
+      "@machinomy/types-web3"
+    ]
+  },
+  "include": [
+    "./*.ts"
+  ]
 }
