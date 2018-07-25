@@ -3,9 +3,7 @@ import HDWalletProvider from '@machinomy/hdwallet-provider'
 import * as dotenv from 'dotenv'
 import fetch from 'node-fetch'
 import * as Web3 from 'web3'
-// const geth = require('geth-private')
-const spawn = require('child_process').spawn
-const execFile = require('child_process').execFile
+import { execFile } from 'child_process'
 
 const logger = new Log('extralight')
 
@@ -46,9 +44,16 @@ if (GETH_DATADIR.endsWith('/')) {
 console.info('*** EXTRALIGHT IS RUNNING ***')
 
 let provider: Web3.Provider
-spawn(`/usr/local/bin/geth`, ['--syncmode', 'light', '--datadir', GETH_DATADIR] )
 
-console.info('*** GETH IS RUNNING ***')
+execFile('/usr/local/bin/geth', ['--syncmode', 'light', '--datadir', GETH_DATADIR, '--rpcapi', 'eth,web3,admin', '--rpc'], (error: any, stdout: any, stderr: any) => {
+  if (error) {
+    console.error('stderr', stderr)
+    throw error
+  }
+  console.log('stdout', stdout)
+})
+
+console.info(`*** GETH IS RUNNING (Timeout 10s) ***`)
 
 setTimeout(() => {
   const providerForHDWallet = new Web3.providers.HttpProvider(PROVIDER_URL)
@@ -98,7 +103,7 @@ setTimeout(() => {
     console.error(error)
     console.info('*** EXTRALIGHT WAS TERMINATED ***')
   })
-}, 5000)
+}, 10 * 1000)
 
 function admin_nodeInfo (cb: Function) {
   const payload = {
